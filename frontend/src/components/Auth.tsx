@@ -11,39 +11,36 @@ export const Auth = ({type}:{type:"signup"|"signin"}) => {
         password: "",
     })
     const navigate = useNavigate();
-    const [loader, setLoader] = useState(false);
-    const [error, setError] = useState("");
 
     async function HandleSignup() {
-        setLoader(true);
+
         try{
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`,postInput);
-            setLoader(false);
+   
             const jwt = response.data.jwt;
             localStorage.setItem("jwt",jwt);
             setTimeout(()=>{
                 navigate("/posts");
             },1000)
 ;        }catch(e){
-            setLoader(false);
-            //@ts-ignore
-            setError(e.response.message);
+
+            
         }
     }
     async function HandleSignin() {
-        setLoader(true);
+ 
         try{
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`,postInput);
-            setLoader(false);
+
             const jwt = response.data.jwt;
             localStorage.setItem("jwt",jwt);
             setTimeout(()=>{
                 navigate("/posts");
             },1000)
 ;        }catch(e){
-            setLoader(false);
+
             //@ts-ignore
-            setError(e.response.message);
+
         }
     }
         
