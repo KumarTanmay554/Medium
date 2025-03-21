@@ -4,18 +4,29 @@ import { BACKEND_URL } from "@/config";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+export interface BlogPost{
+  authorId:string,
+  authorName:string,
+  title:string,
+  content:string,
+  createdAt:string,
+  imagelink:string | "",
+  publisher:string,
+  id:string,
+  
+}
 export function Blog() {
   const path = window.location.pathname;
   const id = path.split("/")[2].replace(":", "");
   const [loader, setLoader] = useState(true);
-  const [blog, setBlog] = useState<any>({});
+  const [blog, setBlog] = useState<BlogPost | null>(null);
 
   useEffect(() => {
     setLoader(true);
     try {
       const fetchpost = async () => {
         const response = await axios.get(`${BACKEND_URL}/api/v1/blog/${id}`);
-        console.log(response);
+        console.log(response.data.post);
         setBlog(response.data.post);
         setLoader(false);
       };
@@ -24,11 +35,17 @@ export function Blog() {
       console.log(error);
       setLoader(false);
     }
-  }, []);
-  return (
-    loader ? <div className="w-full flex justify-center mt-[100px]">
+  }, [id]);
+  if(loader || !blog){
+    return <div className="w-full flex justify-center mt-[100px]">
         <LoadingBlog/>
-    </div>:<div className="flex flex-col items-center md:w-full font-roboto">
+        </div>
+  }
+  return (
+    // loader ? <div className="w-full flex justify-center mt-[100px]">
+    //     <LoadingBlog/>
+    // </div>:
+    <div className="flex flex-col items-center md:w-full font-roboto">
     <div className="md:w-[600px] mt-10 flex flex-col mb-[30px] justify-center items-center">
       <h1 className="text-4xl font-extrabold text-center mb-4 capitalize">{blog.title}</h1>
       <div className="flex gap-4 items-center">

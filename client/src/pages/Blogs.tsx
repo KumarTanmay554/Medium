@@ -5,6 +5,7 @@ import { BACKEND_URL } from "@/config";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+import { BlogPost } from "./Blog";
 
 export function Blogs(){
     const [blogs,setBlogs] = useRecoilState(blogsAtom);
@@ -42,8 +43,8 @@ export function Blogs(){
             <LoadingBlogCard/>
 
         </div>:<div className="flex flex-col gap-5">
-        {blogs?.map((blog:any)=>{
-            return <BlogCard id={blog.id} key={blog.id} authorName={blog.authorName} title={blog.title} content={blog.content} publishedDate={blog.createdAt} imagelink={blog.imagelink}/>
+        {blogs?.map((blog:BlogPost)=>{
+            return <BlogCard id={blog.id} key={blog.id} authorName={blog.authorName} title={blog.title} content={blog.content} createdAt={blog.createdAt} imagelink={blog.imagelink} authorId={blog.authorId} publisher={blog.publisher}/>
         })}
     </div>
     )

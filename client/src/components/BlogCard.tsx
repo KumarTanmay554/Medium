@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { BlogPost } from "@/pages/Blog";
 
 export interface BlogCardProps {
   authorName: string;
@@ -16,9 +17,9 @@ function stripHtml(html: string) {
   return doc.body.textContent || "";
 }
 
-export function BlogCard(prop: BlogCardProps) {
+export function BlogCard(prop: BlogPost) {
   const contentText = stripHtml(prop.content);
-  const publishedDate = new Date(prop.publishedDate).toLocaleDateString();
+  const publishedDate = new Date(prop.createdAt).toLocaleDateString();
   const navigate = useNavigate();
   return (
     <div className="flex flex-col md:flex-row justify-center border-b-2 pb-4 px-4 gap-4  items-center font-roboto mx-auto min-h-[240px] md:w-[800px]">

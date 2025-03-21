@@ -7,6 +7,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { BlogPost } from "./Blog";
 
 export function Home() {
   const user = useRecoilValue(userAtom);
@@ -126,7 +127,7 @@ export function Home() {
                 <LoadingBlog />
                 <LoadingBlog />
                 </div>
-            ):blogs.map((blog: any) =>
+            ):blogs.map((blog: BlogPost) =>
                {
               return (
                 <BlogHomeCard
