@@ -32,17 +32,7 @@ export function Navbar() {
           <Button variant="link" className="text-black hidden md:flex text-xs md:text-sm font-medium">
           <a onClick={handleOurStoryClick}>Our Story</a>
           </Button>
-          {path!=="/signin" && !user.id   && (
-            <Button
-              onClick={() => {
-                navigate("/signin");
-              }}
-              variant="link"
-              className="text-black text-xs md:text-sm font-medium"
-            >
-              Signin
-            </Button>
-          )}
+          
           {user.id && <Button
             onClick={() => {
               navigate("/write");
@@ -62,6 +52,17 @@ export function Navbar() {
           >
             Blogs
           </Button>
+          {path!=="/signin" && !user.id   && (
+            <Button
+              onClick={() => {
+                navigate("/signin");
+              }}
+              variant="link"
+              className="text-black text-xs md:text-sm font-medium"
+            >
+              SignIn
+            </Button>
+          )}
           {!user.id && path!=="/signup" && (
             <button
               onClick={() => {

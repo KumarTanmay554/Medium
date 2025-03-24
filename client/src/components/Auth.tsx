@@ -33,10 +33,10 @@ export function Auth({ type }: { type: "signup" | "signin" }) {
     password: "",
     name: "",
   });
-  const [signin,setSignin] = useState<SigninInput>({
-    email:"",
-    password:""
-  })
+  // const [signin,setSignin] = useState<SigninInput>({
+  //   email:"",
+  //   password:""
+  // })
 
   async function HandleSignup() {
     setLoader(true);
