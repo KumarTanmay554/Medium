@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { ChangeEvent, useState } from "react";
-import {SigninInput, SignupInput} from "@kumartanmay554/medium-common"
+import { SignupInput} from "@kumartanmay554/medium-common"
 
 import axios from "axios";
 import { BACKEND_URL } from "../config";
